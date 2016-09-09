@@ -1,0 +1,13 @@
+---
+  NeutronQosPolicy.create_and_delete_qos_policies:
+    -
+      args:
+        qos_policy_create_args: {}
+      runner:
+        type: "constant"
+        times: 100
+        concurrency: 10
+      context:
+        users:
+          tenants: 3
+          users_per_tenant: 3
