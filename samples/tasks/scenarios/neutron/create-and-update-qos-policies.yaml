@@ -1,9 +1,9 @@
 ---
-  NeutronSecurityGroup.create_and_update_security_groups:
+  NeutronQosPolicy.create_and_update_qos_policies:
     -
       args:
-        security_group_create_args: {}
-        security_group_update_args: {}
+        qos_policy_create_args: {}
+        qos_policy_update_args: {}
       runner:
         type: "constant"
         times: 100
@@ -12,6 +12,3 @@
         users:
           tenants: 3
           users_per_tenant: 3
-        quotas:
-          neutron:
-            security_group: -1

@@ -1,0 +1,18 @@
+---
+  NeutronFirewall.create_and_update_firewalls:
+    -
+      args:
+        firewall_create_args: {}
+        firewall_update_args: {}
+      runner:
+        type: "constant"
+        times: 100
+        concurrency: 10
+      context:
+        users:
+          tenants: 1
+          users_per_tenant: 1
+        quotas:
+          neutron:
+            firewall_policy: -1
+            firewall: -1

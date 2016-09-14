@@ -568,3 +568,133 @@ class NeutronScenario(scenario.OpenStackScenario):
         body = {"security_group": security_group_update_args}
         return self.clients("neutron").update_security_group(
             security_group["security_group"]["id"], body)
+
+    @atomic.action_timer("neutron.create_qos_policy")
+    def _create_qos_policy(self, **qos_policy_create_args):
+        """Create Neutron qos-policy.
+
+        param: qos_policy_create_args: dict, POST /v2.0/qos/policies
+                                          request options
+        return: dict, neutron qos-policy
+        """
+        qos_policy_create_args["name"] = self.generate_random_name()
+        return self.clients("neutron").create_qos_policy(
+            {"policy": qos_policy_create_args})
+
+    @atomic.action_timer("neutron.delete_qos_policy")
+    def _delete_qos_policy(self, qos_policy):
+        """Delete Neutron qos policy.
+
+        param: qos_policy: dict, neutron qos_policy
+        """
+        return self.clients("neutron").delete_qos_policy(
+            qos_policy["policy"]["id"])
+
+    @atomic.action_timer("neutron.list_qos_policies")
+    def _list_qos_policies(self, **kwargs):
+        """Return list of Neutron qos policies."""
+        return self.clients("neutron").list_qos_policies(**kwargs)
+
+    @atomic.action_timer("neutron.update_qos_policy")
+    def _update_qos_policy(self, qos_policy,
+                               **qos_policy_update_args):
+        """Update Neutron qos_policy.
+
+        param: qos_policy: dict, neutron qos_policy
+        param: qos_policy_update_args: dict, POST /v2.0/qos/policies
+                                           update options
+        return: dict, updated neutron qos_policy
+        """
+        qos_policy_update_args["name"] = self.generate_random_name()
+        body = {"policy": qos_policy_update_args}
+        return self.clients("neutron").update_qos_policy(
+            qos_policy["policy"]["id"], body)
+
+    @atomic.action_timer("neutron.create_firewall")
+    def _create_firewall(self, firewall_policy, **firewall_create_args):
+        """Create Neutron firewall.
+
+        param: firewall_create_args: dict, POST /v2.0/fw/firewalls
+                                          request options
+        param: firewall_policy_id: str, neutron fw firewall-policy-id
+        return: dict, neutron firewall
+        """
+        args = {
+            "name": self.generate_random_name(),
+            "firewall_policy_id": firewall_policy['firewall_policy']['id']
+        }
+        args.update(firewall_create_args)
+        return self.clients("neutron").create_firewall(
+            {"firewall": args})
+
+    @atomic.action_timer("neutron.delete_firewall")
+    def _delete_firewall(self, firewall):
+        """Delete Neutron firewall.
+
+        param: qos_policy: dict, neutron firewall
+        """
+        return self.clients("neutron").delete_firewall(
+            firewall["firewall"]["id"])
+
+    @atomic.action_timer("neutron.list_firewalls")
+    def _list_firewalls(self, **kwargs):
+        """Return list of Neutron qos firewalls."""
+        return self.clients("neutron").list_firewalls(**kwargs)
+
+    @atomic.action_timer("neutron.update_firewall")
+    def _update_firewall(self, firewall,
+                           **firewall_update_args):
+        """Update Neutron firewall.
+
+        param: firewall: dict, neutron firewall
+        param: firewall_update_args: dict, POST /v2.0/fw/firewalls
+                                           update options
+        return: dict, updated neutron firewall
+        """
+        firewall_update_args["name"] = self.generate_random_name()
+        body = {"firewall": firewall_update_args}
+        return self.clients("neutron").update_firewall(
+            firewall["firewall"]["id"], body)
+
+    @atomic.action_timer("neutron.create_firewall_policy")
+    def _create_firewall_policy(self, **firewall_policy_create_args):
+        """Create Neutron firewall-policy.
+
+        param: firewall_policy_create_args: dict, POST /v2.0/fw/firewall_policies
+                                          request options
+        return: dict, neutron firewall-policy
+        """
+        firewall_policy_create_args["name"] = self.generate_random_name()
+        return self.clients("neutron").create_firewall_policy(
+            {"firewall_policy": firewall_policy_create_args})
+
+    @atomic.action_timer("neutron.delete_firewall_policy")
+    def _delete_firewall_policy(self, firewall_policy):
+        """Delete Neutron firewall policy.
+
+        param: firewall_policy: dict, neutron firewall_policy
+        """
+        return self.clients("neutron").delete_firewall_policy(
+            firewall_policy["firewall_policy"]["id"])
+
+    @atomic.action_timer("neutron.list_firewall_policies")
+    def _list_firewall_policies(self, **kwargs):
+        """Return list of Neutron firewall policies."""
+        return self.clients("neutron").list_firewall_policies(**kwargs)
+
+    @atomic.action_timer("neutron.update_firewall_policy")
+    def _update_firewall_policy(self, firewall_policy,
+                           **firewall_policy_update_args):
+        """Update Neutron firewall_policy.
+
+        param: firewall_policy: dict, neutron firewall_policy
+        param: firewall_policy_update_args: dict, POST /v2.0/fw/firewall_policies
+                                           update options
+        return: dict, updated neutron firewall_policy
+        """
+        firewall_policy_update_args["name"] = self.generate_random_name()
+        body = {"firewall_policy": firewall_policy_update_args}
+        return self.clients("neutron").update_firewall_policy(
+            firewall_policy["firewall_policy"]["id"], body)
+
+

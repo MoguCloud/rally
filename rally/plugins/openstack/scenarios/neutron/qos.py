@@ -61,7 +61,7 @@ class NeutronQosPolicy(utils.NeutronScenario):
         """Create and update Neutron qos-policies.
 
         Measure the "neutron qos-policy-create" and "neutron
-        qos_policy-update" command performance.
+        qos-policy-update" command performance.
 
         :param qos_policy_create_args: dict, POST /v2.0/qos-policies
                                            request options

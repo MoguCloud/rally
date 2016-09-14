@@ -59,7 +59,16 @@ class NeutronQuotas(object):
             "health_monitor": {
                 "type": "integer",
                 "minimum": -1
+            },
+            "firewall": {
+                "type": "integer",
+                "minimum": -1
+            },
+            "firewall_policy": {
+                "type": "integer",
+                "minimum": -1
             }
+
         }
     }
 
